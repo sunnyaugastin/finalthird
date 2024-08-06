@@ -38,8 +38,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const supabaseUrl = 'https://okewahausrbucxkjijol.supabase.co'; // Your Supabase URL
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rZXdhaGF1c3JidWN4a2ppam9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI5Njk2NjksImV4cCI6MjAzODU0NTY2OX0.bsPfPk_wiyerIl-IAEyUa5uLVCtHp7Y7GmclDIGbRN0'; // Your Supabase anon key
+        // Initialize Supabase client
+        const supabaseUrl = 'https://okewahausrbucxkjijol.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rZXdhaGF1c3JidWN4a2ppam9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI5Njk2NjksImV4cCI6MjAzODU0NTY2OX0.bsPfPk_wiyerIl-IAEyUa5uLVCtHp7Y7GmclDIGbRN0';
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         async function updateText() {
