@@ -19,6 +19,7 @@
         }
         .container {
             margin: 20px;
+            flex: 1;
         }
         textarea {
             width: 100%;
@@ -43,7 +44,7 @@
         }
         .lower-third {
             position: fixed;
-            bottom: -100px;
+            top: 0;
             left: 0;
             width: 100%;
             background-color: #333;
@@ -52,10 +53,11 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-            transition: bottom 0.5s ease-in-out;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-in-out;
         }
         .lower-third.show {
-            bottom: 0;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -95,12 +97,13 @@
     function fetchText() {
         database.ref('sharedText').on('value', (snapshot) => {
             const text = snapshot.val();
-            document.getElementById("lower-third").innerText = text;
-            toggleLowerThird();
+            const lowerThird = document.getElementById("lower-third");
+            lowerThird.innerText = text;
+            showLowerThird();
         });
     }
 
-    function toggleLowerThird() {
+    function showLowerThird() {
         const lowerThird = document.getElementById("lower-third");
         lowerThird.classList.add("show");
         setTimeout(() => {
