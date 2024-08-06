@@ -46,17 +46,20 @@
             const text = document.getElementById('textInput').value;
 
             try {
-                const { error } = await supabase
+                console.log('Updating text to:', text); // Log text input
+
+                const { data, error } = await supabase
                     .from('lower_third')
                     .update({ text })
                     .eq('id', 1); // Assumes you're updating the row with id = 1
-            
+
                 if (error) throw error;
 
+                console.log('Update result:', data); // Log result of update
                 alert('Text updated successfully!');
             } catch (error) {
                 console.error('Error updating text:', error);
-                alert('Error updating text.');
+                alert('Error updating text: ' + error.message);
             }
         }
     </script>
