@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Lower Third Text</h1>
+        <input type="text" id="textInput" placeholder="Enter new text">
+        <button onclick="updateText()">Update Text</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://okewahausrbucxkjijol.supabase.co';
+        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // Replace with your anon key
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function updateText() {
+            const text = document.getElementById('textInput').value;
+
+            const { error } = await supabase
+                .from('lower_third')
+                .update({ text })
+                .eq('id', 1); // Assumes you're updating the row with id = 1
+            
+            if (error) {
+                console.error('Error updating text:', error);
+                alert('Error updating text.');
+                return;
+            }
+
+            alert('Text updated successfully!');
+        }
+    </script>
+</body>
+</html>
