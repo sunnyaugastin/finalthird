@@ -38,25 +38,26 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const supabaseUrl = 'https://okewahausrbucxkjijol.supabase.co';
-        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // Replace with your anon key
+        const supabaseUrl = 'https://okewahausrbucxkjijol.supabase.co'; // Your Supabase URL
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rZXdhaGF1c3JidWN4a2ppam9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI5Njk2NjksImV4cCI6MjAzODU0NTY2OX0.bsPfPk_wiyerIl-IAEyUa5uLVCtHp7Y7GmclDIGbRN0'; // Your Supabase anon key
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         async function updateText() {
             const text = document.getElementById('textInput').value;
 
-            const { error } = await supabase
-                .from('lower_third')
-                .update({ text })
-                .eq('id', 1); // Assumes you're updating the row with id = 1
+            try {
+                const { error } = await supabase
+                    .from('lower_third')
+                    .update({ text })
+                    .eq('id', 1); // Assumes you're updating the row with id = 1
             
-            if (error) {
+                if (error) throw error;
+
+                alert('Text updated successfully!');
+            } catch (error) {
                 console.error('Error updating text:', error);
                 alert('Error updating text.');
-                return;
             }
-
-            alert('Text updated successfully!');
         }
     </script>
 </body>
